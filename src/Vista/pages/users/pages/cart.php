@@ -8,8 +8,7 @@ include('../../../../Modelo/db.php');
 if (isset($_POST['update_update_btn'])) {
     $update_value = $_POST['update_quantity'];
     $update_id = $_POST['update_quantity_id'];
-    $update_quantity_query = mysqli_query($conn, "UPDATE `cart` SET quantity ='$update_value' 
-    WHERE id ='$update_id' ");
+    $update_quantity_query = mysqli_query($conn, "UPDATE `cart` SET quantity ='$update_value' WHERE id_cart ='$update_id' ");
     if ($update_quantity_query) {
         header('location:../../users/pages/cart.php');
     };
@@ -93,7 +92,7 @@ if (isset($_GET['delete_all'])) {
                     /**
                      * La variable $select_cart seleciona nuestra tabla llamada "Cart" de nuestra base de datos
                      */
-                    $select_cart = mysqli_query($conn, "SELECT * FROM `cart`");
+                    $select_cart = mysqli_query($conn, "SELECT * FROM `cart`  ");
                     /**
                      * Esta variable es el precio total a pagar por el cliente - se inicia en cero porque no hay nada en el carrito
                      */
@@ -108,7 +107,7 @@ if (isset($_GET['delete_all'])) {
                             <tr>
                                 <td><img src="../../../../Modelo/uploaded_img/<?php echo $fetch_cart['image'] ?>" height="100" alt="A"></td>
                                 <td><?php echo $fetch_cart['name'] ?></td>
-                                <td>$<?php echo number_format($fetch_cart['price']); ?> Mxn.</td>
+                                <td>$<?php echo ($fetch_cart['price']); ?> Mxn.</td>
 
                                 <td>
                                     <form action="" method="POST">
@@ -117,7 +116,7 @@ if (isset($_GET['delete_all'])) {
                                         <input type="submit" value="Actualizar Cantidades" name="update_update_btn" onclick="return confirm('Cantidad Actualizada Correctamente')">
                                     </form>
                                 </td>
-                                <td>$<?php echo $sub_total = number_format($fetch_cart['price'] * $fetch_cart['quantity']); ?> Mxn.</td>
+                                <td>$<?php echo $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?> Mxn.</td>
                                 <td><a href="cart.php?remove=<?php echo $fetch_cart['id_cart']; ?>" onclick="return confirm('¿Estas Seguro de eliminar esto del carrito?')" class="delete-btn"> <i class="fas fa-trash"></i> Eliminar</a></td>
 
                             </tr>
@@ -142,7 +141,7 @@ if (isset($_GET['delete_all'])) {
             <div class="checkout-btn">
                 <!-- <a href="../../../pages/users/pages/pagar.php" class="btn"> Pagar</a> -->
 
-                <a href="../../../pages/users/pages/pagar.php"  class="btn <?= ($grand_total > 1) ? '' : 'disabled'; ?>">Pagar</a>
+                <a href="../../../pages/users/pages/pagar.php" class="btn <?= ($grand_total >= 1) ? '' : 'disabled'; ?>">Pagar</a>
 
             </div>
 

@@ -1,12 +1,6 @@
 <?php
-
 include('../../../../Modelo/db.php');
 
-
-/**
- *Esta condicional tiene la funcionalidad de Agregar N Productos del Menu del restaurante para que se refleje en la base de datos del restaurante
-
- */
 if (isset($_POST['add_product'])) {
    $p_name = $_POST['p_name'];
    $p_price = $_POST['p_price'];
@@ -17,19 +11,14 @@ if (isset($_POST['add_product'])) {
    $insert_query = mysqli_query($conn, "INSERT INTO `comidas`(`name`, `price`, `image`) VALUES 
    ('$p_name', '$p_price', '$p_image')") or die('query failed');
 
-
-
    if ($insert_query) {
       move_uploaded_file($p_image_tmp_name, $p_image_folder);
       $message[] = 'Producto añadido con exito';
    } else {
       $message[] = 'No se pudo añadir el producto';
    }
-};
+}
 
-/**
- *Esta condicional tiene la funcionalidad de eliminar N elementros del carrito de compras para que se refleje en la base de datos por parte del panel del administrador en el menu del restaurante
- */
 if (isset($_GET['delete'])) {
    $delete_id = $_GET['delete'];
    $delete_query = mysqli_query($conn, "DELETE FROM `comidas` where id_Comida= '$delete_id'") or die('query failed');
@@ -42,30 +31,30 @@ if (isset($_GET['delete'])) {
    };
 };
 
-if (isset($_POST['update_product'])) {
+if(isset($_POST['update_product'])){
    $update_p_id = $_POST['update_p_id'];
    $update_p_name = $_POST['update_p_name'];
    $update_p_price = $_POST['update_p_price'];
    $update_p_image = $_FILES['update_p_image']['name'];
    $update_p_image_tmp_name = $_FILES['update_p_image']['tmp_name'];
-   $update_p_image_folder = '../../../../Modelo/uploaded_img/' . $update_p_image;
-   $update_query = mysqli_query($conn, "UPDATE `comidas` SET name = '$update_p_name', price = '$update_p_price', image = '$update_p_image' WHERE id_Comida = '$update_p_id'");
+   $update_p_image_folder = '../../../../Modelo/uploaded_img/' .$update_p_image;
 
-   if ($update_query) {
-      move_uploaded_file($update_p_image_tmp_name, $update_p_image_folder);
-      $message[] = 'Actualizado con exito';
-      header('location:menu.php');
-   } else {
-      $message[] = 'El producto no pudo ser actualizado';
-      header('location:menu.php');
+   $update_query = mysqli_query($conn, "UPDATE `comidas` SET name = '$update_p_name', price ='$update_p_price'  ,image = '$update_p_image' WHERE id_Comida = '$update_p_id'");
+
+   if($update_query){
+      move_uploaded_file($update_p_image_tmp_name, $update_p_image_folder );
+      $message[] = 'El producto se ha actualizado';
+      header('Location:menu.php');
+
+   }else{
+      $message[] = 'El producto no se actualizo';
+      header('Location:menu.php');
    }
+
+
 }
 
 ?>
-
-
-
-<!-- Conectar Esta Pagina que es el login del admin -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -76,29 +65,16 @@ if (isset($_POST['update_product'])) {
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Menu Admin</title>
    <!-- <link rel="stylesheet" href="../styles/normalice.css">
-    <link rel="stylesheet" href="../styles/stylesadmin.css">
-    <link rel="stylesheet" href="../styles/sylesadd.css"> -->
+   <link rel="stylesheet" href="../styles/stylesadmin.css">
+   <link rel="stylesheet" href="../styles/sylesadd.css"> -->
    <link rel="stylesheet" href="../styles/normalice.css">
    <!-- <link rel="stylesheet" href="../styles/stylesadmin.css"> -->
    <link rel="stylesheet" href="../styles/sylesadd.css">
-
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
+
 <body>
-   <div class="nav-bg">
-      <nav class="heading__mio ">
-         <a style="font-size: 2rem;" href="../pages/homepage.php">Inicio</a>
-         <a style="font-size: 2rem;" href="../pages/userdata.html">Datos Pendientes</a>
-         <a style="font-size: 2rem;" href="../pages/menu.php">Menús</a>
-
-         <a style="font-size: 2rem;" id="lg" href="../../login.html">Cerrar Sesion</a>
-         <!--Se va a quedar pendiente  -->
-
-
-      </nav>
-   </div>
-
-   <h1 style="color: white; text-align:center">Menú</h1>
 
    <?php
 
@@ -109,20 +85,32 @@ if (isset($_POST['update_product'])) {
    };
 
    ?>
+
+   <div class="nav-bg">
+      <nav class="heading__mio ">
+         <a style="font-size: 2rem;" href="../pages/homepage.php">Inicio</a>
+         <a style="font-size: 2rem;" href="../pages/userdata.html">Datos Pendientes</a>
+         <a style="font-size: 2rem;" href="../pages/menu.php">Menús</a>
+
+         <a style="font-size: 2rem;" id="lg" href="../../login.html">Cerrar Sesion</a>
+
+
+
+      </nav>
+   </div>
+
+
+
    <div class="container">
 
-
       <section>
-
-
          <form action="" method="post" class="add-product-form" enctype="multipart/form-data">
-            <h3>Añadir un producto</h3>
-            <input type="text" name="p_name" placeholder="Introduzca el nombre del producto" class="box" required>
-            <input type="number" name="p_price" min="0" placeholder="Introduzca el precio del producto" class="box" required>
+            <h3>Agregar Nuevo Producto</h3>
+            <input type="text" name="p_name" placeholder="Introducce un Nombre" class="box" required>
+            <input type="number" name="p_price" min="0" placeholder="Introducce un Precio" class="box" required>
             <input type="file" name="p_image" accept="image/png, image/jpg, image/jpeg" class="box" required>
-            <input type="submit" value="Agregar producto" name="add_product" class="btn">
+            <input type="submit" value="Agregar Producto" name="add_product" class="btn">
          </form>
-
       </section>
 
       <section class="display-product-table">
@@ -161,7 +149,6 @@ if (isset($_POST['update_product'])) {
                   };
                   /**
                    * Esta condicional if, hace referencia a que ya se a seleccionado el producto y nos mostrara un mensa "Producto ya agregado al carrito", no nos dejara agarrarlo otra vez, y la condicional else hace refencia a que si no esta en el carrito nos dejara agregarlo al carrrito de compras y nos aparecera el mensaje "Producto Agregado Correctamente"
- 
                    * */
                } else {
                   echo "<div class='empty'>no hay productos añadidos</div>";
@@ -172,29 +159,27 @@ if (isset($_POST['update_product'])) {
 
       </section>
 
-      <section class="edit-form-container">
+      <section class="edit-form-container" id="edit-form-container">
 
          <?php
 
-         /**
-          *Esta condicional tiene la funcionalidad de Actualizar N Productos del Menu del restaurante para que se refleje en la base de datos del restaurante
-
-          */
          if (isset($_GET['edit'])) {
+
             $edit_id = $_GET['edit'];
-            $edit_query = mysqli_query($conn, "SELECT * FROM `products` WHERE id = $edit_id");
+            // $edit_query = mysqli_query($conn, "SELECT * FROM `comidas` WHERE id_comidas = $edit_id");
+            $edit_query = mysqli_query($conn, "SELECT * FROM `comidas` WHERE id_Comida = $edit_id");
             if (mysqli_num_rows($edit_query) > 0) {
                while ($fetch_edit = mysqli_fetch_assoc($edit_query)) {
          ?>
 
-                  <form action="" method="post" enctype="multipart/form-data">
-                     <img src="uploaded_img/<?php echo $fetch_edit['image']; ?>" height="200" alt="">
-                     <input type="hidden" name="update_p_id" value="<?php echo $fetch_edit['id']; ?>">
-                     <input type="text" class="box" required name="update_p_name" value="<?php echo $fetch_edit['name']; ?>">
+                  <form action="" method="POST" enctype="multipart/form-data">
+                     <img src="../../../../Modelo/uploaded_img/<?php echo $fetch_edit['image']; ?>" height="200" alt="Hola soy un imagen">
+                     <input type="hidden" name="update_p_id" value="<?php echo $fetch_edit['id_Comida']; ?>">
+                     <input type="text" class="box" require name="update_p_name" value="<?php echo $fetch_edit['name']; ?>">
                      <input type="number" min="0" class="box" required name="update_p_price" value="<?php echo $fetch_edit['price']; ?>">
                      <input type="file" class="box" required name="update_p_image" accept="image/png, image/jpg, image/jpeg">
-                     <input type="submit" value="update the prodcut" name="update_product" class="btn">
-                     <input type="reset" value="cancel" id="close-edit" class="option-btn">
+                     <input type="submit" value="Actualizar Producto" name="update_product" class="btn">
+                     <input type="reset" value="cancelar" id="close-edit" class="option-btn">
                   </form>
 
          <?php
@@ -204,10 +189,34 @@ if (isset($_POST['update_product'])) {
          };
          ?>
 
+
+
+
       </section>
 
-   </div>
-   <!-- custom js file link  -->
-   <script src="js/script.js"></script>
 
+
+   </div>
+   <script>
+      // let menu = document.querySelector('#menu-btn');
+      // let navbar = document.querySelector('.header .navbar');
+
+      // menu.onclick = () => {
+      //    menu.classList.toggle('fa-times');
+      //    navbar.classList.toggle('active');
+      // };
+
+      // window.onscroll = () => {
+      //    menu.classList.remove('fa-times');
+      //    navbar.classList.remove('active');
+      // };
+
+
+      document.getElementById('close-edit').onclick = () => {
+         document.getElementById('edit-form-container').style.display = 'none';
+         window.location.href = 'menu.php';
+      };
+   </script>
 </body>
+
+</html>

@@ -19,13 +19,14 @@ if (isset($_POST['add_to_cart'])) {
     $product_quantity = 1;
 
     $select_cart = mysqli_query($conn, "SELECT * FROM `cart` WHERE name = '$product_name'");
+    //$idUsuario = mysqli_query($conn, "SELECT FROM usuarios where id_usuario = '$usuario'");
     /**
      * Esta condicional if, hace referencia a que ya se a seleccionado el producto y nos mostrara un mensa "Producto ya agregado al carrito", no nos dejara agarrarlo otra vez, y la condicional else hace refencia a que si no esta en el carrito nos dejara agregarlo al carrrito de compras y nos aparecera el mensaje "Producto Agregado Correctamente"
      */
     if (mysqli_num_rows($select_cart) > 0) {
         $message[] = 'Producto ya fue agregado al carrito';
     } else {
-        $insert_product = mysqli_query($conn, "INSERT INTO `cart`(name, price, image, quantity) VALUES('$product_name', '$product_price', '$product_image', '$product_quantity')");
+        $insert_product = mysqli_query($conn, "INSERT INTO `cart`(name, price, image, quantity/*, id_usuario*/) VALUES('$product_name', '$product_price', '$product_image', '$product_quantity'/*'$idUsuario'*/)");
         $message[] = 'Producto agregado correctamente!';
     }
 }
@@ -47,6 +48,7 @@ if (isset($_POST['add_to_cart'])) {
     <!-- <link rel="stylesheet" href="../styles/stails.css"> -->
 
     <link rel="stylesheet" href="../../admin/styles/sylesadd.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 
 

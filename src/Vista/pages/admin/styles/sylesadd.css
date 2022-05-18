@@ -196,7 +196,7 @@ section {
    left: 0;
    z-index: 10000;
    border-radius: .5rem;
-   background-color: var(--white);
+   /* background-color: var(--white); */
    padding: 1.5rem 2rem;
    margin: 0 auto;
    max-width: 1200px;
@@ -796,6 +796,67 @@ section {
       background-color: var(--oscuro);
    }
 
+}
+
+.card{
+   border-radius: .5rem;
+   background-color: orange;
+   padding: 1rem;
+   margin: 0 auto 4rem auto;
+   width:30rem;
+   height: 10rem;
+
+}
+
+.card p {
+   font-size: 2rem;
+   color: var(--black);
+   font-weight: bold;
+   text-align: center;
+   line-height: 2rem;
+}
+
+.preguntas{
+   font-size: 1.5rem;
+   color: var(--white);
+   font-weight: bold;
+   text-align: center;
+   line-height: 2rem;
+   background-color: rgba(0, 0, 0, 0.549);
+   padding-top: 2rem;
+   padding-bottom: 2rem;
+}
+
+.preguntas h2{
+   color: rgb(218, 88, 7);
+   font-size: 3rem;
+   padding-bottom: 2rem;
+}
+
+.preguntas h3{
+   font-size: 2rem;
+   color: var(--white);
+   font-weight: bold;
+   text-align: center;
+   line-height: 2rem;
+   padding: 1rem;
+}
+.preguntas span{
+   font-size: 1.5rem;
+   color: rgb(255, 109, 5);
+   font-weight: bold;
+   text-align: center;
+   line-height: 2rem;
+   padding: 1rem;
+}
+
+.preguntas p{
+   font-size: 1.5rem;
+   color: orange;
+   font-weight: bold;
+   text-align: center;
+   line-height: 2rem;
+   padding: 1rem;
 }
 
 /*!DataTables */

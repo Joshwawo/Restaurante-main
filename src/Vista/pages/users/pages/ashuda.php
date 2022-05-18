@@ -36,7 +36,7 @@ if (isset($_POST['add_to_cart'])) {
     <link rel="stylesheet" href="../styles/normalice.css">
     <!-- <link rel="stylesheet" href="../styles/stylescliente.css"> -->
     <!-- <link rel="stylesheet" href="../styles/stails.css"> -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../../admin/styles/sylesadd.css">
 
 
@@ -78,6 +78,35 @@ if (isset($_POST['add_to_cart'])) {
                 <p class="headermio--p">¡Talvez esto puede ayudarte!</p>
 
             </header>
+
+            <section>
+                
+            <div class="card">
+                <p>Celular📞: 6623893489</p>
+                <p>Email📧: correo@correo.com</p>
+                
+            </div>
+
+            <div class="preguntas">
+                <h2>Preguntas Frecuentes</h2>
+                <h3>¿Quién se encarga de las entregas?<h3>
+                    <p><span>R:</span> Utilizamos nuestros repartidores para llevar la comida a los clientes lo más rápido posible.</p>
+                <h3>¿Cuál es su radio de entregas?</h3>
+                    <p><span>R:</span> Se realizan pedidos en toda la ciudad.</p>
+                <h3>¿Cuánto cuesta el envío?</h3>
+                    <p><span>R:</span> Se realiza un costo diferente dependiendo de donde esté ubicado el cliente.</p>
+                <h3>¿Qué pasa si no encuentro el establecimiento?</h3>
+                    <p><span>R:</span> Puedes comunicarte con nosotros en la sección de "Contactanos" en la cual se te brindara la información necesaria.</p>
+                <h3>¿En qué horarios puedo realizar pedidos?</h3>
+                    <p><span>R:</span> El padronili se encuentra abierto de 12 pm a 11 pm.</p>
+                <h3>¿Se puede realizar el pago con tarjeta de crédito?</h3>
+                    <p><span>R:</span> Nuestros repartidores cuentan con terminal portátil para pagos con tarjeta, aceptamos visa y mastercard</p>
+            </div>
+                
+            </section>
+
+
+
 
 
         </div>

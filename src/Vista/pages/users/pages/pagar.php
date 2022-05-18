@@ -46,12 +46,14 @@ if (isset($_POST['order_btn'])) {
     if (mysqli_num_rows($cart_query) > 0) {
         while ($product_item = mysqli_fetch_assoc($cart_query)) {
             $product_name[] = $product_item['name'] . ' (' . $product_item['quantity'] . ') ';
-            $product_price = number_format($product_item['price'] * $product_item['quantity']);
+            $product_price = ($product_item['price'] * $product_item['quantity']);
             $price_total += $product_price;
         };
     };
     $total_product = implode(', ', $product_name);
-    $detail_query = mysqli_query($conn, "INSERT INTO `order`(name, number, email, method, flat, street, city, country, total_products, total_price) VALUES('$name','$number','$email','$method','$flat','$street','$city','$country','$total_product','$price_total')") or die('query failed');
+    $detail_query = mysqli_query($conn, "INSERT INTO `order`(name, number, email, method, flat, street, city, country, total_products, total_price) 
+    VALUES('$name','$number','$email','$method','$flat','$street','$city','$country','$total_product','$price_total')")
+        or die('query failed');
 
     if ($cart_query && $detail_query) {
         echo "
@@ -140,7 +142,7 @@ if (isset($_POST['order_btn'])) {
 
                     if (mysqli_num_rows($select_cart) > 0) {
                         while ($fetch_cart = mysqli_fetch_assoc($select_cart)) {
-                            $total_price = number_format($fetch_cart['price'] * $fetch_cart['quantity']);
+                            $total_price = ($fetch_cart['price'] * $fetch_cart['quantity']);
                             $grand_total = $total += $total_price;
 
                     ?>
@@ -181,7 +183,7 @@ if (isset($_POST['order_btn'])) {
 
                             <option value="Metodo" disabled selected>Elegir Metodo de Pago</option>
                             <option value="Efectivo">Efectivo</option>
-                            <option value="Paypal">Paypal</option>
+                            <option value="MercadoPago(Terminal)">MercadoPago(Terminal)</option>
                         </select>
                     </div>
 
@@ -213,7 +215,7 @@ if (isset($_POST['order_btn'])) {
 
                     <div class="inputBox">
                         <span>Mensaje <small style="font-size: 1.2rem;">*Opcional*</small> </span>
-                        <input  type="text" placeholder="Podrian Agregar Cubiertos Extras." name="country">
+                        <input type="text" placeholder="Podrian Agregar Cubiertos Extras." name="country">
                     </div>
                     <!-- <a href="../../users/pages/cart.php?delete_all" onclick="return confirm('¿Estas Seguro que quieres eliminar todo del carrito?');" class="delete-btn"> <i class="fas fa-trash"></i> Eliminar Todo </a> -->
 

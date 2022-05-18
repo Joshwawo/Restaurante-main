@@ -5,8 +5,8 @@
     $conn = mysqli_connect(
         'localhost',
         'root',
-        '',
-        'restaurante'
+        'root',
+        'restaurante3'
     );
 
 //     if (!$conn) {
