@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap");
+:root{
+    --amachido: #FFC107;
+    --oscuro: #0c0d0d;
+    --blanco:  #ffffff;
+    --test: rgb(9, 241, 20);
+}
+
+html{
+   background-color: white;
+   background-color: var(--oscuro);
+   background-image: url(/Test2/src/Vista/images/home-bg.png);
+   background-repeat: no-repeat;
+   font-family: 'Raleway', sans-serif;
+
+
+}
+.html-bg{
+    background-image: url(/Restaurante/src/Vista/images//home-bg.png);
+}
+
+/* Tabla de datos */
+.tb{
+    background-color: var(--oscuro);
+    margin: 2rem;
+}
+
+.paginate_button {
+    border-radius: 0 !important;
+  }
+
+.tb-bg{
+    padding: 4rem 4rem;
+    background-color:var(--oscuro);
+    color: #ffffff;
+
+}
+.tb-datos{
+    text-align: center;
+    color: var(--blanco);
+}
+/* Terminacion de la tabla */
+
+.contendor{
+    margin: auto;
+    max-width: 1200px;
+}
+
+.nav-bg{
+    background-color: var(--oscuro);
+
+}
+
+.navegacion{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+
+}
+
+.navegacion a{
+    font-family: 'Raleway', sans-serif;
+    border-radius: 10%;
+    color: var(--blanco);
+    padding: 1rem 2rem;
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 40px;
+
+
+
+}
+
+.navegacion a:hover{
+    /* background-color: var(--amachido);
+    color: var(--blanco); */
+    text-decoration: underline;
+   
+    
+    text-underline-offset: 0.5rem;
+    color: var(--amachido);
+
+}
+
+#lg:hover{
+    text-decoration: underline;
+    text-underline-offset: 1rem;
+    color: red;
+}
+
+.header{
+    
+    /* border: 1px solid rgb(150, 13, 13); */
+    text-align: center;
+    
+    color: var(--blanco);
+    font-size: bold;
+}

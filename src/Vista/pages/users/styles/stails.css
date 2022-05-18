@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap");
+
+:root {
+    --amachido: #FFC107;
+    --oscuro: #0c0d0d;
+    --blanco: #ffffff;
+    --test: rgb(9, 241, 20);
+}
+
+html {
+    background-color: var(--oscuro);
+    background-image: url(/Test2/src/Vista/images/home-bg.png);
+    background-repeat: no-repeat;
+    font-family: 'Raleway', sans-serif;
+
+
+
+}
+
+body {}
+
+img{
+    max-width: 100%;
+    
+}
+
+/* Esto es solo para el navbar */
+.contendor {
+    margin: auto;
+    max-width: 1200px;
+
+}
+
+.nav-bg {
+    background-color: var(--oscuro¿);
+
+}
+
+.navegacion {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 2rem;
+
+
+}
+
+.navegacion a {
+    font-family: 'Raleway', sans-serif;
+    border-radius: 10%;
+    color: var(--blanco);
+    padding: 1rem 2rem;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 40px;
+
+
+
+}
+
+.navegacion a:hover {
+    /* background-color: var(--amachido);
+    color: var(--blanco); */
+    text-decoration: underline;
+
+
+    text-underline-offset: 0.5rem;
+    color: var(--amachido);
+
+}
+
+#lg:hover {
+    text-decoration: underline;
+    text-underline-offset: 1rem;
+    color: red;
+}
+
+/* Aqui termina el navbar */
+
+.headermio {
+    /* LLego Hasta aqui? */
+    /* border: 1px solid rgb(150, 13, 13); */
+    text-align: center;
+    color: var(--blanco);
+    font-size: bold;
+    font-size: 1rem;
+}
+
+
+.heading {
+    text-align: center;
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 2rem;
+}
+
+/**Media querys  */
+
+@media (max-width:450px) {
+
+    html {
+        font-size: 50%;
+    }
+
+    .heading {
+        font-size: 3rem;
+    }
+
+    .products .box-container {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
