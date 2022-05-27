@@ -1,5 +1,14 @@
 <?php
+
+session_start();
 include('../../../../Modelo/db.php');
+$usuario = $_SESSION['login'];
+if (!isset($usuario)) {
+   echo $usuario;
+   header("location:../../../index.html");
+}
+?>
+<?php
 
 if (isset($_POST['add_product'])) {
    $p_name = $_POST['p_name'];
@@ -13,7 +22,7 @@ if (isset($_POST['add_product'])) {
 
    if ($insert_query) {
       move_uploaded_file($p_image_tmp_name, $p_image_folder);
-      $message[] = 'Producto añadido con exito';
+      $message[] = 'Producto añadido correctamente';
    } else {
       $message[] = 'No se pudo añadir el producto';
    }
@@ -31,27 +40,24 @@ if (isset($_GET['delete'])) {
    };
 };
 
-if(isset($_POST['update_product'])){
+if (isset($_POST['update_product'])) {
    $update_p_id = $_POST['update_p_id'];
    $update_p_name = $_POST['update_p_name'];
    $update_p_price = $_POST['update_p_price'];
    $update_p_image = $_FILES['update_p_image']['name'];
    $update_p_image_tmp_name = $_FILES['update_p_image']['tmp_name'];
-   $update_p_image_folder = '../../../../Modelo/uploaded_img/' .$update_p_image;
+   $update_p_image_folder = '../../../../Modelo/uploaded_img/' . $update_p_image;
 
    $update_query = mysqli_query($conn, "UPDATE `comidas` SET name = '$update_p_name', price ='$update_p_price'  ,image = '$update_p_image' WHERE id_Comida = '$update_p_id'");
 
-   if($update_query){
-      move_uploaded_file($update_p_image_tmp_name, $update_p_image_folder );
+   if ($update_query) {
+      move_uploaded_file($update_p_image_tmp_name, $update_p_image_folder);
       $message[] = 'El producto se ha actualizado';
       header('Location:menu.php');
-
-   }else{
+   } else {
       $message[] = 'El producto no se actualizo';
       header('Location:menu.php');
    }
-
-
 }
 
 ?>
@@ -89,7 +95,7 @@ if(isset($_POST['update_product'])){
    <div class="nav-bg">
       <nav class="heading__mio ">
          <a style="font-size: 2rem;" href="../pages/homepage.php">Inicio</a>
-         <a style="font-size: 2rem;" href="../pages/userdata.html">Datos Pendientes</a>
+         <a style="font-size: 2rem;" href="../pages/userdata.php">Datos Pendientes</a>
          <a style="font-size: 2rem;" href="../pages/menu.php">Menús</a>
 
          <a style="font-size: 2rem;" id="lg" href="../../login.html">Cerrar Sesion</a>

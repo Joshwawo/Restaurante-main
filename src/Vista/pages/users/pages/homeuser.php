@@ -26,8 +26,10 @@ if (isset($_POST['add_to_cart'])) {
     if (mysqli_num_rows($select_cart) > 0) {
         $message[] = 'Producto ya fue agregado al carrito';
     } else {
-        $insert_product = mysqli_query($conn, "INSERT INTO `cart`(name, price, image, quantity/*, id_usuario*/) VALUES('$product_name', '$product_price', '$product_image', '$product_quantity'/*'$idUsuario'*/)");
+        $insert_product = mysqli_query($conn, "INSERT INTO `cart`(name, price, image, quantity) VALUES('$product_name', '$product_price', '$product_image', '$product_quantity')");
         $message[] = 'Producto agregado correctamente!';
+        /*, id_usuario*/
+        /*'$idUsuario'*/
     }
 }
 

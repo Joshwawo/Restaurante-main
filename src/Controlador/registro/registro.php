@@ -72,8 +72,6 @@ asdaasd
         exit();
     }
     $result_Query = mysqli_query($conn, $query_Usuarios);
-
-
     echo '<Script language="javascript">alert("Datos guardados correctamente"</script>';
     session_abort();
     header("Location: ../../Vista/pages/login.html");
@@ -83,4 +81,3 @@ asdaasd
 else{
     header("refresh:5;Location: ../../Vista/index.html");
 }
-?>

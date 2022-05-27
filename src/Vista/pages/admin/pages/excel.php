@@ -1,5 +1,11 @@
 <?php 
-
+session_start();
+include ('../../../../Modelo/db.php');
+$usuario = $_SESSION['login'];
+if(!isset($usuario)){
+    echo $usuario;
+    header("location:../../../index.html");
+}
 header("Content-Type: application/xls");
 header("Content-Disposition: attachment; filename= productos.xls");
 
@@ -59,7 +65,7 @@ header("Content-Disposition: attachment; filename= productos.xls");
     ?>
 
 </tbody>
-<td><a href="../../admin/pages/homepage.php?delete_all" onclick="return confirm('¿Estas Seguro que quieres eliminar todos los Pedidos?');" class="delete-btn"> <i class="fas fa-trash"></i> Eliminar Todo </a></td>
+<!-- <td><a href="../../admin/pages/homepage.php?delete_all" onclick="return confirm('¿Estas Seguro que quieres eliminar todos los Pedidos?');" class="delete-btn"> <i class="fas fa-trash"></i> Eliminar Todo </a></td> -->
 <a href="../../admin/pages/excel.php">Descargar Datos</a>
 </table>
 
